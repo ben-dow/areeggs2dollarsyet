@@ -1,6 +1,10 @@
 name: Build
 run-name: build ${{ github.ref_name }}
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - dev
 jobs:
   build:
     name: Build
@@ -27,8 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: |-
       ${{
-         github.ref_name == 'master' && 'production'
-      || github.ref_name == 'dev'    && 'dev'
+         github.ref_name == 'main' && 'production'
+      || github.ref_name == 'dev'  && 'dev'
       }}
     steps:
       - name: Checkout Repository
