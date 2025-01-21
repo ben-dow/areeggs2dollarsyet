@@ -21,3 +21,18 @@ jobs:
         with:
          name: dist
          path: dist
+  deployment:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: |-
+      ${{
+         github.ref_name == 'master' && 'production'
+      || github.ref_name == 'dev'    && 'dev'
+      }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.1.7"
