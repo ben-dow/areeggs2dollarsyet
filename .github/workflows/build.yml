@@ -1,5 +1,5 @@
 name: Build
-run-name: ${{ github.actor }} ${{ github.base_ref }}
+run-name: build ${{ github.ref }}
 on: [push]
 jobs:
   build:
