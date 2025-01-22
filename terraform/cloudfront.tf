@@ -1,3 +1,4 @@
+/*
 resource "aws_cloudfront_distribution" "website" {
   enabled = true
   price_class = "PriceClass_100"
@@ -37,3 +38,4 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
 }
+ */
