@@ -73,3 +73,5 @@ jobs:
             -backend-config="dynamodb_table=${{ vars.TERRAFORM_TABLE }}" \
             -backend-config="key=terraform/${{ vars.ENVIRONMENT_NAME }}/${{ vars.ENVIRONMENT_NAME }}" \
             -backend-config="region=${{ vars.AWS_REGION }}"
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
