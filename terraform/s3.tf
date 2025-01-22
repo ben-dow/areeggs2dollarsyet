@@ -13,9 +13,9 @@ resource "aws_s3_bucket_website_configuration" "website" {
 }
 
 resource "aws_s3_object" "dist" {
-  for_each = fileset("../dist/", "*")
+  for_each = fileset("../dist/", "**/*.*")
   bucket = aws_s3_bucket.website_bucket.id
   key = each.value
-  source = "../dist"
+  source = "../dist/${each.value}"
   etag = filemd5("../dist/${each.value}")
 }
