@@ -67,4 +67,4 @@ jobs:
         with:
           terraform_version: "1.10.4"
       - name: Terraform init
-        run: terraform init -backend-config="bucket=${{ vars.TERRAFORM_BUCKET }}" -backend-config="dynamodb_table=${{ vars.TERRAFORM_TABLE }}" -backend-config="key=terraform/${{ vars.environment }}/${{ vars.environment }}" -backend-config="region=${{ vars.AWS_REGION }}"
+        run: terraform init -backend-config="bucket=${{ vars.TERRAFORM_BUCKET }}" -backend-config="dynamodb_table=${{ vars.TERRAFORM_TABLE }}" -backend-config="key=terraform/${{ vars.ENVIRONMENT_NAME }}/${{ vars.ENVIRONMENT_NAME }}" -backend-config="region=${{ vars.AWS_REGION }}"
