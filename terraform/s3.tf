@@ -65,10 +65,23 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 }
 
+variable "mime_types" {
+  default = {
+    htm   = "text/html"
+    html  = "text/html"
+    css   = "text/css"
+    ttf   = "font/ttf"
+    js    = "application/javascript"
+    map   = "application/javascript"
+    json  = "application/json"
+  }
+}
+
 resource "aws_s3_object" "dist" {
   for_each = fileset("../dist/", "**/*.*")
   bucket = aws_s3_bucket.website_bucket.id
   key = each.value
   source = "../dist/${each.value}"
   etag = filemd5("../dist/${each.value}")
+  content_type  = lookup(var.mime_types, split(".", each.value)[length(split(".", each.value)) - 1])
 }
