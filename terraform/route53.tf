@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    awscc = {
-      source  = "hashicorp/awscc"
-      version = "1.2.0"
-    }
-  }
-}
-
 data "aws_route53_zone" "rootdns" {
   name = "areeggs2dollarsyet.com"
 }
