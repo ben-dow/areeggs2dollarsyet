@@ -35,8 +35,5 @@ resource "aws_cloudfront_distribution" "website" {
       restriction_type = "none"
     }
   }
-  viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cert.arn
-  }
 
 }
