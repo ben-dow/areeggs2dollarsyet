@@ -29,7 +29,7 @@ resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
 resource "aws_s3_bucket_acl" "bucket-acl" {
   bucket = aws_s3_bucket.website_bucket.id
   acl = "public-read"
-  depends_on = [aws_s3_bucket_ownership_controls]
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
 
 resource "aws_s3_bucket_policy" "bucket-policy" {
