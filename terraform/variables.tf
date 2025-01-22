@@ -1,15 +1,15 @@
 variable "state_bucket" {
-  type = "string"
+  type = string
 }
 
 variable "state_table" {
-  type="string"
+  type=string
 }
 
 variable "environment" {
-  type="string"
+  type=string
 }
 
 variable "region" {
-  type="string"
+  type=string
 }
