@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "areeggs2dollarsyet-${var.environment}"
+  bucket = "${var.environment}.areeggs2dollarsyet.com"
 }
 
 resource "aws_s3_bucket_versioning" "versioning" {
