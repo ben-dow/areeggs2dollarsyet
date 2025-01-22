@@ -6,3 +6,8 @@ resource "aws_acm_certificate" "cert" {
     create_before_destroy = true
   }
 }
+
+provider "aws" {
+  alias      = "us-east-1"
+  region     = "us-east-1"
+}
