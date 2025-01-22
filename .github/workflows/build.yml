@@ -54,8 +54,6 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      TF_VAR_state_bucket: ${{ vars.TERRAFORM_BUCKET }}
-      TF_VAR_state_table: ${{ vars.TERRAFORM_TABLE }}
       TF_VAR_environment: ${{ vars.ENVIRONMENT_NAME }}
       TF_VAR_region: ${{ vars.AWS_REGION }}
     defaults:
@@ -69,4 +67,4 @@ jobs:
         with:
           terraform_version: "1.10.4"
       - name: Terraform init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${{ vars.TERRAFORM_BUCKET }}" -backend-config="dynamodb_table=${{ vars.TERRAFORM_TABLE }}" -backend-config="key=terraform/${{ vars.environment }}/${{ vars.environment }}" -backend-config="region=${{ vars.AWS_REGION }}"
