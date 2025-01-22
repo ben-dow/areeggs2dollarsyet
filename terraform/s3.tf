@@ -5,7 +5,6 @@ resource "aws_s3_bucket" "website_bucket" {
 resource "aws_s3_bucket_acl" "bucket-acl" {
   bucket = aws_s3_bucket.website_bucket.id
   acl = "public-read"
-  depends_on = [aws_s3]
 }
 
 resource "aws_s3_bucket_website_configuration" "website" {
