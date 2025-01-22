@@ -74,6 +74,7 @@ variable "mime_types" {
     js    = "application/javascript"
     map   = "application/javascript"
     json  = "application/json"
+    svg = "image/svg+xml"
   }
 }
 
