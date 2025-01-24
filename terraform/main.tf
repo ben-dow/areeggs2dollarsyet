@@ -14,4 +14,8 @@ terraform {
 
 provider "aws" {
   region = var.region
+  default_tags {
+    Application = "areeggs2dollarsyet"
+    Environment = var.environment
+  }
 }
