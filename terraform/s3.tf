@@ -2,6 +2,16 @@ resource "aws_s3_bucket" "website_bucket" {
   bucket = "${var.environment}.areeggs2dollarsyet.com"
 }
 
+resource "aws_s3_bucket_public_access_block" "static_site_bucket_public_access" {
+  bucket = aws_s3_bucket.website_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.website_bucket.id
   versioning_configuration {
@@ -16,25 +26,24 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
 
 resource "aws_s3_bucket_policy" "bucket-policy" {
   bucket = aws_s3_bucket.website_bucket.id
-  policy = data.aws_iam_policy_document.iam-policy-1.json
+  policy = data.aws_iam_policy_document.s3_bucket_policy.json
 }
 
-data "aws_iam_policy_document" "iam-policy-1" {
+data "aws_iam_policy_document" "s3_bucket_policy" {
   statement {
-    sid    = "AllowPublicRead"
-    effect = "Allow"
-    resources = [
-      "arn:aws:s3:::${aws_s3_bucket.website_bucket.id}",
-      "arn:aws:s3:::${aws_s3_bucket.website_bucket.id}/*",
-    ]
-    actions = ["S3:GetObject"]
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.website_bucket.arn}/*"]
     principals {
-      type        = "*"
-      identifiers = ["*"]
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.website.arn]
     }
   }
 }
-
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.website_bucket.id
   index_document {
