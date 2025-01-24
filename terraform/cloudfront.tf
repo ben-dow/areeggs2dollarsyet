@@ -1,21 +1,26 @@
+resource "aws_cloudfront_origin_access_control" "cf-s3-oac" {
+  name                              = "CloudFront S3 OAC"
+  description                       = "CloudFront S3 OAC"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
 resource "aws_cloudfront_distribution" "website" {
   enabled = true
-  price_class = "PriceClass_100"
-  origin {
-    domain_name = aws_s3_bucket.website_bucket.bucket_domain_name
-    origin_id  = aws_s3_bucket.website_bucket.id
-    custom_origin_config {
-      http_port              = 80
-      https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1.2"]
-    }
-  }
-  is_ipv6_enabled = true
   default_root_object = "index.html"
+  price_class = "PriceClass_100"
+
+  origin {
+    domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+    origin_id  = aws_s3_bucket.website_bucket.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.cf-s3-oac.id
+  }
+
   aliases = ["${var.environment}.areeggs2dollarsyet.com"]
+
   default_cache_behavior {
-    allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    allowed_methods = ["GET", "HEAD"]
     cached_methods = ["GET", "HEAD"]
     target_origin_id       = aws_s3_bucket.website_bucket.id
     viewer_protocol_policy = "redirect-to-https"
@@ -23,10 +28,10 @@ resource "aws_cloudfront_distribution" "website" {
     default_ttl = 3600
     max_ttl = 86400
     forwarded_values {
-      query_string = true
+      query_string = false
 
       cookies {
-        forward = "all"
+        forward = "none"
       }
     }
   }
