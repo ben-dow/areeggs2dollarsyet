@@ -44,4 +44,18 @@ resource "aws_cloudfront_distribution" "website" {
     acm_certificate_arn = aws_acm_certificate.cert.arn
     ssl_support_method = "sni-only"
   }
+
+
+}
+
+resource "null_resource" "invalidate_cache"{
+  triggers = {
+    val = aws_s3_object.dist.checksum_sha256
+  }
+  lifecycle {
+
+  }
+  provisioner "local-exec" {
+    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website.id} --paths '/*'"
+  }
 }
