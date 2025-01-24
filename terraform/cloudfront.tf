@@ -54,6 +54,6 @@ resource "null_resource" "invalidate_cache"{
     val = aws_s3_object.dist[each.key].etag
   }
   provisioner "local-exec" {
-    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website.id} --paths ${aws_s3_object.dist[each.key].key}"
+    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website.id} --paths \"/${aws_s3_object.dist[each.key].key}\""
   }
 }
