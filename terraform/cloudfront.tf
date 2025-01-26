@@ -47,11 +47,10 @@ resource "aws_cloudfront_distribution" "website" {
 }
 
 resource "null_resource" "invalidate_cache"{
-  for_each = aws_s3_object.dist
   triggers = {
-    val = aws_s3_object.dist[each.key].etag
+    updated = timestamp()
   }
   provisioner "local-exec" {
-    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website.id} --paths \"/${aws_s3_object.dist[each.key].key}\""
+    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website.id} --paths \"/*\""
   }
 }
