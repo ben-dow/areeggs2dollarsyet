@@ -13,7 +13,7 @@ resource "aws_route53_record" "env_record" {
   }
 }
 
-resource "aws_route53_record" "env_record" {
+resource "aws_route53_record" "prod_record" {
   count = var.environment == "prod" ? 1 : 0
   name    = data.aws_route53_zone.rootdns.name
   type    = "A"
