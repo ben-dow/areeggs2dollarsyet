@@ -1,0 +1,32 @@
+[
+  {
+    "title": "He Did A Thing",
+    "date": "2025-01-26",
+    "sources": [
+      {
+        "url": "example.com",
+        "sourceName": "Axios"
+      }
+    ],
+    "eggMeter": 1
+  },
+  {
+    "title": "He Did A Thing",
+    "date": "2025-02-17",
+    "sources": [
+      {
+        "url": "example.com",
+        "sourceName": "Axios"
+      },
+      {
+        "url": "example.com",
+        "sourceName": "Axios"
+      },
+      {
+        "url": "example.com",
+        "sourceName": "Axios"
+      }
+    ],
+    "eggMeter": 10
+  }
+]
