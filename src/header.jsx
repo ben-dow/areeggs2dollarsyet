@@ -25,13 +25,7 @@ function Header() {
                     </p>
                 </div>
                 <EggScale/>
-                <div className={"text-center text-slate-700 flex justify-center text-xs"}>
-                    <p className={"text-wrap w-9xl"}>
-                        This website is not run by journalists. This is not anyone's full time job, so things are likely missing because the news
-                        cycle moves so quickly. Omissions of critical items are not intentional. Take everything here with a grain of salt, stay informed through
-                        multiple sources, and challenge your own beliefs regularly.
-                    </p>
-                </div>
+
             </div>
         </div>
     )
@@ -40,7 +34,10 @@ function Header() {
 function EggScale() {
     const rows = [];
     for (let i = 0; i <= 10; i++) {
-        rows.push(<EggMeter key={i} value={i}/>);
+        rows.push(<div className={"text-center"}>
+                    <EggMeter key={i} value={i}/>
+                    {i}
+                    </div>);
     }
     return (
         <div className={"flex justify-center gap-1"}>
