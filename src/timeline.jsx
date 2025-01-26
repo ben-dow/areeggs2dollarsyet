@@ -51,7 +51,7 @@ function TimelineItem(props) {
                 <div className={"flex gap-2"}>
                     {sources}
                 </div>
-                <div className={"text-sm text-right"}>Egg Meter: {item.eggMeter}</div>
+                <h3 className={"text-sm font-semibold mt-1"}>Egg Meter: {item.eggMeter}</h3>
             </div>
 
         </VerticalTimelineElement>
