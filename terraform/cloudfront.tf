@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "website" {
     origin_access_control_id = aws_cloudfront_origin_access_control.cf-s3-oac.id
   }
 
-  aliases = ["${var.environment}.areeggs2dollarsyet.com"]
+  aliases = ["${var.environment}.areeggs2dollarsyet.com", var.environment == "prod" ? "areeggs2daollarsyet.com" : null]
 
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
