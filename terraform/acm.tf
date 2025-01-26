@@ -5,6 +5,7 @@ resource "aws_acm_certificate" "cert" {
   lifecycle {
     create_before_destroy = true
   }
+  subject_alternative_names = var.environment == "prod" ? ["areeggs2dollarsyet.com"] : []
 }
 
 resource "aws_route53_record" "acm_record" {
