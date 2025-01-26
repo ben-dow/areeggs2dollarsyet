@@ -7,7 +7,7 @@ function App() {
   return (
       <div>
 
-          <div className={"flex flex-col justify-between h-screen mb-20"}>
+          <div className={"mb-20"}>
               <Header/>
               <Timeline/>
           </div>
