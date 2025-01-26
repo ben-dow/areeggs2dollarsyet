@@ -1,6 +1,6 @@
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import data from "../public/data.json"
+import data from "./assets/data.json"
 import EggSvg from "./assets/egg.svg?react"
 
 export function Timeline() {
@@ -39,17 +39,15 @@ function TimelineItem(props) {
             icon={<EggSvg/>}
             date={item.date}
             iconStyle={{background: CalculateColor(item.eggMeter)}}
-            className={""}
         >
-            <div className={"flex flex-col gap-2"}>
-                <h2 className={"text-2xl"}>{item.title}</h2>
-                <h3 className={"text-lg"}>Sources</h3>
-                <div className={"flex gap-3"}>
+            <div className={"flex flex-col gap-1"}>
+                <h2 className={"text-2xl font-bold"}>{item.title}</h2>
+                <div className={"text-sm"}>{item.description}</div>
+                <h3 className={"text-lg font-semibold"}>Sources</h3>
+                <div className={"flex gap-2"}>
                     {sources}
                 </div>
-                <div>
-                    <p className={"text-sm"}>Egg Rating: {item.eggMeter}</p>
-                </div>
+                <div className={"text-sm text-right"}>Egg Meter: {item.eggMeter}</div>
             </div>
 
         </VerticalTimelineElement>
