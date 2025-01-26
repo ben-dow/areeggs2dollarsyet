@@ -26,6 +26,10 @@ export function Timeline() {
 function TimelineItem(props) {
     let item = props.item;
 
+    let date = new Date(item.date);
+    var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+    date = new Date(date.getTime() + userTimezoneOffset);
+
     const sources = item.sources.map((source,key) => {
         return (
             <div key={key}>
@@ -37,7 +41,7 @@ function TimelineItem(props) {
     return (
         <VerticalTimelineElement
             icon={<EggSvg/>}
-            date={item.date}
+            date={date.toDateString()}
             iconStyle={{background: CalculateColor(item.eggMeter)}}
         >
             <div className={"flex flex-col gap-1"}>
