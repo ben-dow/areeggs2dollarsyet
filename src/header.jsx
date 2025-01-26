@@ -17,7 +17,7 @@ function Header() {
             </div>
             <div className={"w-full shadow-lg bg-slate-200 flex flex-col gap-2 justify-center p-5"}>
                 <div className={"text-center text-slate-700 flex justify-center"}>
-                    <p className={"text-wrap w-5xl text-sm"}>Below is a timeline of actions taken by the trump
+                    <p className={"text-wrap w-5xl text-sm"}>Below is a timeline of actions taken by the Trump
                         administration
                         since taking office on January 20th 2025.
                         <br/>
