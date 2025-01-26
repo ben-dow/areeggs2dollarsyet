@@ -30,7 +30,6 @@ resource "aws_cloudfront_distribution" "website" {
     compress = true
     forwarded_values {
       query_string = false
-
       cookies {
         forward = "none"
       }
