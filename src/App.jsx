@@ -5,8 +5,8 @@ import {Footer} from "./footer.jsx";
 
 function App() {
   return (
-      <div>
-          <div className={"mb-52"}>
+      <div className={"bg-slate-100"}>
+          <div className={"pb-52"}>
               <Header/>
               <Timeline/>
           </div>
