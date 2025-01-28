@@ -44,7 +44,7 @@ function EggScale() {
                     </div>);
     }
     return (
-        <div className={"flex justify-center gap-1"}>
+        <div className={"flex flex-wrap justify-center gap-1"}>
             {rows}
         </div>
     )
